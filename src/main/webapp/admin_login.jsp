@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored = "false" %>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Insert title here</title>
+	<title>Admin Login Page</title>
 	<%@ include file="component/allcss.jsp" %>
 	<style type="text/css">
         .paint-card{
@@ -21,7 +23,23 @@
 				<div class="card paint-card">
 					<div class="card-body">
 						<p class="fs-4 text-center">Admin Login</p>
-						<form action="#" method="post">
+						
+						<c:if test="${not empty succMsg }">
+							<p class="text-center text-success fs-3"> ${succMsg}</p>
+							<c:remove var="succMsg" scope="session" />
+						</c:if>
+						
+						<c:if test="${not empty sucMsg }">
+							<p class="text-center text-success fs-3"> ${sucMsg}</p>
+							<c:remove var="sucMsg" scope="session" />
+						</c:if>
+						
+						<c:if test="${not empty errorMsg }">
+							<p class="text-center text-danger fs-3"> ${errorMsg}</p>
+							<c:remove var="errorMsg" scope="session" />
+						</c:if>
+						
+						<form action="adminLogin" method="post">
 							<div class="mb-3">
 								<label class="form-Label">Email address</label> <input required
 									name="email" type="email" class="form-control">
